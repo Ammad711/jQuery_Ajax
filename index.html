@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jQuery_library/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            getData();
+        })
+
+        function getData(){
+            $.ajax({
+                url :'sample.html',
+                //url : 'https://jsonplaceholder.typicode.com/posts',
+                type :'GET',
+                dataType : 'text',
+                success : successfn,
+                error : errorfn,
+                complete : function(xhr,status){
+                    console.log('The request is completed');
+                }
+        })
+        }
+
+        function successfn(result){
+            console.log('success');
+            $('#ajaxmessage').append(result);
+        }
+
+        function errorfn(xhr,status,strErr){
+            console.log('error');
+            console.log(xhr);
+            console.log(status);
+            console.log(strErr);
+        }
+
+    </script>
+</head>
+<body>
+    <div id='ajaxmessage'></div>
+</body>
+</html>
